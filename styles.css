@@ -4,19 +4,32 @@ body {
      text-align: center;
 }
 .scrollcontainerLeft {
+     position: absolute;
+     right: 0;
+     top: 0;
      height: 100%;
      width: 15%;
      background: yellow;
      overflow-y: scroll;
      overflow-x: scroll;
-     direction: rtl;
+     direction: ltr;
  }
  .scrollcontainerRight {
-     position: abs;
+     position: absolute;
+     left: 0;
+     top: 0;
      height: 100%;
      width: 15%;
      background: green;;
      overflow-y: scroll;
      overflow-x: scroll;
-     direction: ltr;
+     direction: rtl;
+ }
+ .middlecontainer {
+     position: absolute;
+     top: 0;
+     left: 15%;
+     height: 100%;
+     width: 70%;
+     background-color: black;
  }
