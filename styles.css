@@ -27,15 +27,12 @@
   }
 
 .pane:nth-child(1) {
-    width: 25%;
     flex-basis: 25%;
 }
-.pane:nth-child(2) {
-    width: 50%;
+.pane:nth-child(3) {
     flex-basis: 50%;
 }
-.pane:nth-child(3) {
-    width: 25%;
+.pane:nth-child(5) {
     flex-basis: 25%;
 }
   
