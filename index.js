@@ -13,10 +13,9 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 const port = process.env.ROBLOX_PORT || 3000;
-const clientId = process.env.CLIENT_ID;
-clientId = clientId.toString();
-const clientSecret = process.env.ROBLOX_CLIENT_SECRET;
-clientSecret = clientSecret.toString();
+console.log(process.env.CLIENT_ID)
+const clientId = process.env.CLIENT_ID.toString();
+const clientSecret = process.env.ROBLOX_CLIENT_SECRET.toString();
 
 // Generating a new secret at runtime invalidates existing cookies if the server restarts.
 // Set your own constant cookie secret if you want to keep them alive despite server restarting.
