@@ -15,7 +15,7 @@ const app = express();
 const port = process.env.ROBLOX_PORT || 3000;
 const clientId = process.env.CLIENT_ID;
 clientId = clientId.toString();
-const clientSecret = process.env.ROBLOX_CLIENT_SECRET.toString();
+const clientSecret = process.env.ROBLOX_CLIENT_SECRET;
 clientSecret = clientSecret.toString();
 
 // Generating a new secret at runtime invalidates existing cookies if the server restarts.
