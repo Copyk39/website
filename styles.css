@@ -26,10 +26,10 @@
     background-color: #ddd;
   }
 
-.pane:first-child {
+.pane:nth-child(1) {
     width: 25%;
 }
-.pane:second-child {
+.pane:nth-child(2) {
     width: 50%;
 }
 .pane:nth-child(3) {
