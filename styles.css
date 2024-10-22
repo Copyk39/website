@@ -24,8 +24,17 @@
     align-items: center;
     justify-content: center;
     background-color: #ddd;
-    width: 25%;
   }
+
+.pane:first-child {
+    width: 25%;
+}
+.pane:second-child {
+    width: 50%;
+}
+.pane:nth-child(3) {
+    width: 25%;
+}
   
   .divider {
     width: 10px;
