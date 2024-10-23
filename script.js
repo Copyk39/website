@@ -65,6 +65,9 @@ $(function() {
   });
   $("#vertical").change(function (e) {
     $(".container").css("flex-direction", this.checked ? "column" : "row");
-  })
+  });
+  $("#show-dividers").change(function (e) {
+    $(".divider").css("display", this.checked ? "" : "none");
+  });
 });
    
