@@ -29,13 +29,13 @@
   }
 
 .pane:nth-child(1) {
-    flex-basis: 25%;
+    flex-basis: 24%;
 }
 .pane:nth-child(3) {
     flex-basis: 50%;
 }
 .pane:nth-child(5) {
-    flex-basis: 25%;
+    flex-basis: 24%;
 }
   
   .divider {
@@ -49,10 +49,19 @@
     height: 75px;
     background: black;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
 }
 #login {
     padding: 5px;
     background-color: blue;
+  color: white;
+}
+
+.checks > * {
+  display: inline;
+  color: white;
+}
+.checks > p {
+  margin-left: 20px;
 }
