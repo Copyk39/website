@@ -9,13 +9,11 @@ $(function() {
   const down = (e) => {
     isDragging = true;
     currentDivider = $(e.target);
-    console.log($(e.target));
     $('body').css('cursor', 'ew-resize');
   }
 
   const dragging = (e) => {
     if (!isDragging) return;
-    console.log("movin");
     const container = $('.container');
     const containerOffset = container.offset();
     const containerWidth = container.width();
@@ -42,7 +40,6 @@ $(function() {
   }
 
   const up = (e) => {
-    console.log("up");
     isDragging = false;
     currentDivider = null;
     $('body').css('cursor', '');
