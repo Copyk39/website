@@ -10,17 +10,27 @@
 </head>
 <body>
      <div class="bar"> <!-- .nazev -tab -->
-          <a href="https://website-80h8.onrender.com">
-               <button id="login">login</button>
-          </a>
+     <div class="checks">
+         <p>pane 1</p>
+         <input type="checkbox" data-pane="1" class="pane-checker" checked>
+         <p>pane 2</p>
+         <input type="checkbox" data-pane="2" class="pane-checker" checked>
+         <p>pane 3</p>
+         <input type="checkbox" data-pane="3" class="pane-checker" checked>
+         <!-- <p>vertical</p>
+         <input type="checkbox" id="vertical"> -->
+     </div>
+     <a href="https://website-80h8.onrender.com">
+          <button id="login">login</button>
+     </a>
      </div>
      <div class="container">
-          <div class="pane">Pane 1</div>
-          <div class="divider"></div>
-          <div class="pane">Pane 2</div>
-          <div class="divider"></div>
-          <div class="pane">Pane 3</div>
-        </div>
+       <div class="pane" id="pane1">Pane 1</div>
+       <div class="divider" id="divider1"></div>
+       <div class="pane" id="pane2">Pane 2</div>
+       <div class="divider" id="divider2"></div>
+       <div class="pane" id="pane3">Pane 3</div>
+     </div>     
      <script src="script.js"></script>
 </body>
 </html>
