@@ -114,6 +114,7 @@ async function main() {
             .clearCookie("state")
             .clearCookie("nonce")
             .redirect("/home");
+            console.log(tokenSet)
     });
 
     app.get("/home", checkLoggedIn, (req, res) => {
