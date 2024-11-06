@@ -40,9 +40,9 @@ async function main() {
     const client = new issuer.Client({
         client_id: clientId,
         client_secret: clientSecret,
-        redirect_uris: [`https://copyk39.github.io/website/Home/`],
+        redirect_uris: [`https://website-80h8.onrender.com/oauth/callback`],
         response_types: ["code"],
-        scope: "openid profile universe-messaging-service:publish",
+        scope: "openid profile",
         id_token_signed_response_alg: "ES256",
     });
 
