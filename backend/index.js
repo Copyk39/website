@@ -42,7 +42,7 @@ async function main() {
         client_secret: clientSecret,
         redirect_uris: [`https://website-80h8.onrender.com/oauth/callback`],
         response_types: ["code"],
-        scope: "openid profile ",
+        scope: "openid profile universe-messaging-service:publish",
         id_token_signed_response_alg: "ES256",
     });
 
