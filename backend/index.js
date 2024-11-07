@@ -152,7 +152,7 @@ async function main() {
        
     });
 
-    app.post("/get_games", checkLoggedIn, async (req, res) => { //netusim co to e v2
+    app.post("/get_universes", checkLoggedIn, async (req, res) => { //netusim co to e v2
         const tokenSet = new TokenSet(req.signedCookies.tokenSet);
         const apiUrl = `https://apis.roblox.com/v2/users/${tokenSet.claims().sub}/games`; //error
 

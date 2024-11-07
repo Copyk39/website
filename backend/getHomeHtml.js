@@ -129,11 +129,9 @@ export function getHomeHtml(userData) {
         <a href="${userData.profile}" target="_blank" class="button-link">🔗 View on Roblox</a>
         <a href="/logout" class="button-link">Logout</a>
 
-        <form action="/get_games" method="POST" class="message-form">
+        <form action="/get_universes" method="POST" class="message-form">
             <button>GET THEM GAMES</button>
         </form>
-
-        <label>games</label> 
 
         <form action="/message" method="POST" class="message-form">
             <div class="input-container">
