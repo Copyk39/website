@@ -153,6 +153,9 @@ async function main() {
     });
 
     app.post("/get_games", checkLoggedIn, async (req, res) => { //netusim co to e v2
+
+          const apiUrl = `https://apis.roblox.com/v2/users/${tokenSet.claims(userId)}/games`;
+
             try {
                 // Send the message using the access token for authorization
                 const result = await client.requestResource(
