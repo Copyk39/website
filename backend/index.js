@@ -148,6 +148,35 @@ async function main() {
         }
     });
 
+    app.post("/get_inv", checkLoggedIn, async (req, res) => { //netusim co to e
+       
+    });
+
+    app.post("/get_games", checkLoggedIn, async (req, res) => { //netusim co to e v2
+        const options = {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+            },
+          };
+          
+          const apiUrl = `https://apis.roblox.com/v2/users/${tokenSet.claims(userId)}/games`;
+          
+          fetch(apiUrl, options)
+            .then(response => response.json())
+            .then(data => {
+              const games = data.games;
+              games.forEach(game => {
+                console.log(`Game ID: ${game.gameId}`);
+                console.log(`Name: ${game.name}`);
+                console.log(`Description: ${game.description}`);
+                console.log(`Game Type: ${game.gameType}`);
+                console.log(`Is Private: ${game.isPrivate}`);
+                console.log(`Is Owned by User: ${game.isOwnedByUser}`);
+              });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
     // Start the server
     app.listen(port, () => {
         console.log(`Server is running on port: ${port}`);
