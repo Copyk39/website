@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Map Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
+        }
+        #output {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+        #controls {
+            margin: 10px;
+        }
+        button, input {
+            padding: 8px 12px;
+            margin: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #grid-container {
+            width: 90vw;
+            height: 70vh;
+            overflow: auto;
+            background: white;
+            white-space: nowrap;
+        }
+        #grid {
+            display: grid;
+            gap: 1px;
+            background: white;
+            cursor: grab;
+        }
+        .cell {
+            width: 30px;
+            height: 30px;
+            background: #ddd;
+        }
+        .active {
+            background: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div id="output">{}</div>
+    <div id="controls">
+        <label>Grid Size: <input type="number" id="gridSize" value="20" min="1"></label>
+        <label>Start X: <input type="number" id="startX" value="0"></label>
+        <label>Start Y: <input type="number" id="startY" value="0"></label>
+        <button onclick="updateGrid()">Set Grid</button>
+        <button onclick="clearGrid()">Clear Map</button>
+        <button onclick="copyOutput()">Copy Output</button>
+    </div>
+    <div id="grid-container">
+        <div id="grid"></div>
+    </div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const output = document.getElementById('output');
+        let selectedCells = new Set();
+        let isDragging = false;
+        let offsetX = 0, offsetY = 0;
+        let startX = 0, startY = 0;
+
+        function createGrid(size, startX, startY) {
+            grid.innerHTML = '';
+            grid.style.gridTemplateColumns = `repeat(${size}, 30px)`;
+            grid.style.gridTemplateRows = `repeat(${size}, 30px)`;
+            selectedCells.clear();
+            for (let y = startY; y < startY + size; y++) {
+                for (let x = startX; x < startX + size; x++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    cell.dataset.x = x;
+                    cell.dataset.y = y;
+                    cell.addEventListener('click', () => toggleCell(cell, x, y));
+                    grid.appendChild(cell);
+                }
+            }
+            updateOutput();
+        }
+
+        function toggleCell(cell, x, y) {
+            const key = `{${x},${y}}`;
+            if (selectedCells.has(key)) {
+                selectedCells.delete(key);
+                cell.classList.remove('active');
+            } else {
+                selectedCells.add(key);
+                cell.classList.add('active');
+            }
+            updateOutput();
+        }
+
+        function updateOutput() {
+            output.textContent = `{${[...selectedCells].join(',')}}`;
+        }
+
+        function clearGrid() {
+            selectedCells.clear();
+            document.querySelectorAll('.cell').forEach(cell => cell.classList.remove('active'));
+            updateOutput();
+        }
+
+        function copyOutput() {
+            const outputText = output.textContent;
+            navigator.clipboard.writeText(outputText.slice(1, -1)).then(() => {
+                alert('Output copied to clipboard');
+            });
+        }
+
+        function updateGrid() {
+            const newSize = parseInt(document.getElementById('gridSize').value);
+            const newStartX = parseInt(document.getElementById('startX').value);
+            const newStartY = parseInt(document.getElementById('startY').value);
+            createGrid(newSize, newStartX, newStartY);
+        }
+
+        grid.addEventListener('mousedown', (e) => {
+            if (e.button === 2) {
+                isDragging = true;
+                startX = e.clientX - offsetX;
+                startY = e.clientY - offsetY;
+                grid.style.cursor = 'grabbing';
+            }
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                offsetX = e.clientX - startX;
+                offsetY = e.clientY - startY;
+                grid.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+            grid.style.cursor = 'grab';
+        });
+
+        window.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        createGrid(20, 0, 0);
+    </script>
+</body>
+</html>
