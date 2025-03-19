@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generátor Hesel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <label for="length">počet znaků</label>
+    <input type="number" id="length" min="1" value="8">
+    <br>
+    <input type="checkbox" id="uppercase"> velká písmena<br>
+    <input type="checkbox" id="lowercase"> malá písmena<br>
+    <input type="checkbox" id="numbers"> čísla<br>
+    <input type="checkbox" id="symbols"> znaky<br>
+    <br>
+    <label for="excluded">zakázané znaky</label>
+    <input type="text" id="excluded">
+    <br><br>
+    <button onclick="generatePassword()">Generovat</button>
+    <input type="text" id="password" readonly>
+    <button onclick="copyPassword()">zkopírovat</button>
+    
+    <script>
+        function generatePassword() {
+            const length = document.getElementById('length').value;
+            const includeUppercase = document.getElementById('uppercase').checked;
+            const includeLowercase = document.getElementById('lowercase').checked;
+            const includeNumbers = document.getElementById('numbers').checked;
+            const includeSymbols = document.getElementById('symbols').checked;
+            const excludedChars = document.getElementById('excluded').value;
+            
+            let charset = "";
+            if (includeUppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            if (includeLowercase) charset += "abcdefghijklmnopqrstuvwxyz";
+            if (includeNumbers) charset += "0123456789";
+            if (includeSymbols) charset += "!@#$%^&*()_+[]{}|;:,.<>?/";
+            
+            // Remove excluded characters
+            charset = charset.split('').filter(char => !excludedChars.includes(char)).join('');
+            
+            if (charset.length === 0) {
+                alert("Vyberte alespoň jednu možnost!");
+                return;
+            }
+            
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                password += charset[Math.floor(Math.random() * charset.length)];
+            }
+            
+            document.getElementById('password').value = password;
+        }
+        
+        function copyPassword() {
+            const passwordField = document.getElementById('password');
+            passwordField.select();
+            document.execCommand('copy');
+            alert("Heslo zkopírováno!");
+        }
+    </script>
+</body>
+</html>
