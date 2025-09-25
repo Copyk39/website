@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Embed Player</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background: #111;
+      color: #eee;
+    }
+    input {
+      width: 400px;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #cc0000;
+      color: white;
+      font-weight: bold;
+    }
+    iframe {
+      margin-top: 20px;
+      width: 800px;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>YouTube Embed Viewer</h1>
+  <input type="text" id="ytLink" placeholder="Paste YouTube link here">
+  <button onclick="loadVideo()">Play</button>
+  
+  <div id="player"></div>
+
+  <script>
+    function loadVideo() {
+      const url = document.getElementById("ytLink").value;
+      const videoId = extractVideoId(url);
+      if (!videoId) {
+        alert("Invalid YouTube link!");
+        return;
+      }
+      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      document.getElementById("player").innerHTML = 
+        `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
+    }
+
+    function extractVideoId(url) {
+      // Match common YouTube link formats
+      const regex = /(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/;
+      const match = url.match(regex);
+      return match ? match[1] : null;
+    }
+  </script>
+</body>
+</html>
