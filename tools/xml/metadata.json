@@ -1,5 +1,0 @@
-{
-  "name": "Roblox XML Editor",
-  "description": "A powerful, web-based editor for Roblox XML (.rbxlx) files. Provides a hierarchical tree view, property editor, and a script editor with Lua syntax highlighting to inspect and modify game files with ease.",
-  "requestFramePermissions": []
-}
